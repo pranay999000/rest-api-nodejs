@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rest API</title>
+	<link rel="stylesheet" href="style.css"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+	<form action="/task/new" method="post">
+		<input name="name" placeholder="your name" />
+		<textarea name="status" placeholder="say something fun..."></textarea>
+		<input class="submit" type="submit"/>
+	</form>
+
+	<div class='statuses'>
+		<h3 class='status-title'>Our Feed:</h3>
+        <ul id = "status-area">
+            <!-- <p id='my-name'></p>
+            <p id='my-status'></p> -->
+        </ul>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+body{
+	background: #eee;
+}
+form{
+	margin-left: 25vw;
+	margin-top: 100px;
+}
+textarea{
+	resize: none;
+	width: 50vw;
+	display: block;
+	height: 100px;
+	font-size: 1.5em;
+}
+.submit{
+	padding: 5px;
+	border-radius: 5px;
+	border: 2px solid #e74c3c;
+	color: white;
+	font-size: 1.5em;
+	background: #e74c3c;
+	position: relative;
+	left: 40vw;
+}
+.statuses{
+	border: solid 2px black;
+	border-left: 1px;
+	border-right: 1px;
+	background: white;
+	height: 400px;
+	width: 70vw;
+	position: relative;
+	top: 5vh;
+	left: 12vw;
+}
+.status-title{
+	text-align: center;
+	text-decoration: underline;
+}
