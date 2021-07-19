@@ -240,14 +240,6 @@ app.get('/', function(req, res) {
     res.render('index')
 })
 
-app.post('/task/new', function(req, res) {
-    mongoClient.connect(url, function(error, client) {
-        if (!error) {
-            newStatus(client, req, res);
-        }
-    })
-})
-
 app.get('/status', function(req, res) {
     mongoClient.connect(url, function(error, client) {
         if (!error) {
@@ -256,10 +248,26 @@ app.get('/status', function(req, res) {
     })
 })
 
+app.post('/task/new', function(req, res) {
+    mongoClient.connect(url, function(error, client) {
+        if (!error) {
+            newStatus(client, req, res);
+        }
+    })
+})
+
 app.put('/status/update/:id', function(req, res) {
     mongoClient.connect(url, function(error, client) {
         if (!error) {
             updateStatus(client, req, res)
+        }
+    })
+})
+
+app.delete('/status/:id', function(req, res) {
+    mongoClient.connect(url, function(error, client) {
+        if (!error) {
+            deleteStatus(client, req, res)
         }
     })
 })
@@ -288,7 +296,6 @@ function fillStatus(client, req, res) {
     collection.find({}).toArray(function(error, result) {
         if (!error) {
             res.send(result)
-            res.end()
         }
     })
 }
@@ -302,13 +309,25 @@ function updateStatus(client, req, res) {
         { $set: { status: req.body.status } },
         function(error, result) {
             if (!error) {
-                console.log('error-update')
-                res.redirect('/')
-                res.end()
+                res.send(result)
             }
         }
     )
     
+}
+
+function deleteStatus(client, req, res) {
+    let api = client.db('restAPI')
+    let collection = api.collection('APIs')
+
+    collection.deleteOne(
+        { _id: new objectId(req.params.id) },
+        function(error, result) {
+            if (!error) {
+                res.send(result)
+            }
+        }
+    )
 }
 
 app.listen(8000, () => console.log('listening to post 8000'))
